@@ -1,4 +1,4 @@
-# Workit - AI Excercise Recommender Website Internal Repository
+# Workit - AI Exercise Recommender Website Internal Repository
 
 Welcome to the internal repository for Workit! This repository is dedicated to the development of Workit, an application designed to assist with gym exercises. Below you'll find important information about the project, including milestones and relevant datasets.
 
