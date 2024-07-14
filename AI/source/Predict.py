@@ -1,3 +1,10 @@
+# UNCOMMENT THESE TO INSTALL THE REQUIRED LIBRARIES
+# %pip install pandas
+# %pip install tensorflow
+# %pip install scikit-learn
+# %pip install pymysql
+# %pip install sshtunnel
+
 import numpy as np
 import pandas as pd
 import sklearn
@@ -11,24 +18,8 @@ from tensorflow.keras.models import load_model
 
 from flask import Flask, request
 
-# Set up SSH tunnel
-server = sshtunnel.SSHTunnelForwarder(
-    ('selene.hud.ac.uk', 22),
-    ssh_username='workit',
-    ssh_password='umbra(despair>Quartz218',
-    remote_bind_address=('localhost', 3306)
-)
-server.start()
-
-# Defining the connection
-connection = pymysql.connect(host='localhost', port=server.local_bind_port, user='workit', password='umbra(despair>Quartz218', database='workit')
-
-MODEL_PATH = "AI/source/ann_gym_recommender.keras"
-
-# Load the dataset
-dataset = pd.read_sql_query("SELECT * FROM `megaGymDataset`", connection)
-
-server.stop()
+MODEL_PATH = "AI/model/ann_gym_recommender.keras"
+DATA_PATH = "AI/data/megaGymDataset.csv"
 
 def labelEncodersScaler(data):
     label_encoders = {}
@@ -84,22 +75,41 @@ def recommend_exercises(user_input, model, data):
     return data.iloc[np.squeeze(predictions.argsort())][::-1][:10].sort_values(["Rating"], ascending=False).index.to_list()
 
 
-# user_input = ["Strength", "Biceps", "Body Only", "Intermediate"]
-# IDs = recommend_exercises(user_input, model, dataset.copy())
-# dataset.iloc[IDs]
 
+### Reading data from a SQL-SERVER
+try:
+    # Set up SSH tunnel
+    server = sshtunnel.SSHTunnelForwarder(
+        ('selene.hud.ac.uk', 22),
+        ssh_username='workit',
+        ssh_password='umbra(despair>Quartz218',
+        remote_bind_address=('localhost', 3306)
+    )
+    server.start()
+    
+    # Defining the connection
+    connection = pymysql.connect(host='localhost', port=server.local_bind_port, user='workit', password='umbra(despair>Quartz218', database='workit')
+
+    # Load the dataset
+    dataset = pd.read_sql_query("SELECT * FROM `megaGymDataset`", connection)
+
+    server.stop()
+except:
+    print("Could not connect to Database, reading local file from `" + DATA_PATH + "` instead... ")
+    dataset = pd.read_csv(DATA_PATH)
+
+### Training from dataset
+# model = train_model(dataset.copy())
+# model.save(MODEL_PATH)
+
+### Load saved model
+model = load_model(MODEL_PATH)
 
 app = Flask(__name__)
 
 @app.route('/')
 def index():
-    # Training from dataset
-    model = train_model(dataset.copy())
-    model.save(MODEL_PATH)
-
-    # Predict from user input
-    model = load_model(MODEL_PATH)
-
+    ### Predict from user input
     user_input = [str(request.args.get("workout-type"))]
     user_input += [str(request.args.get("body-part"))]
     user_input += [str(request.args.get("equipment"))]
