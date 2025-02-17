@@ -1,14 +1,32 @@
 # UNCOMMENT THESE TO INSTALL THE REQUIRED LIBRARIES
-# %pip install pandas
-# %pip install tensorflow
-# %pip install scikit-learn
-# %pip install pymysql
-# %pip install sshtunnel
+# %pip install numpy==1.26.4 tensorflow==2.10.1 pandas scikit-learn pymysql sshtunnel flask
 
+# ================SYSTEM CHECK==================================
+import sys
+import os
+
+# Check Python version
+print(f"Python Version: `{sys.version}`")  # Detailed version info
+print(f"Base Python location: `{sys.base_prefix}`")
+print(f"Current Environment location: `{os.path.basename(sys.prefix)}`", end='\n\n')
+
+import tensorflow as tf
+from tensorflow.python.platform import build_info as tf_build_info
+from tensorflow.config import list_physical_devices
+
+print(f"Tensorflow version: `{tf.__version__}`")
+print(f"CUDNN version: `{tf_build_info.build_info['cudnn_version']}`")
+print(f"CUDA version: `{tf_build_info.build_info['cuda_version']}`")
+print(f"Num GPUs Available: {len(list_physical_devices('GPU'))}")
+# ===============================================================
+
+
+# ================IMPORTING LIBRARIES===========================
+
+import tensorflow as tf
 import numpy as np
 import pandas as pd
 import sklearn
-import tensorflow as tf
 import pymysql
 import sshtunnel
 
@@ -98,12 +116,14 @@ except:
     print("Could not connect to Database, reading local file from `" + DATA_PATH + "` instead... ")
     dataset = pd.read_csv(DATA_PATH)
 
-### Training from dataset
-# model = train_model(dataset.copy())
-# model.save(MODEL_PATH)
+try:
+    ## Load saved model
+    model = load_model(MODEL_PATH)
+except:
+    ## Training from dataset
+    model = train_model(dataset.copy())
+    model.save(MODEL_PATH)
 
-### Load saved model
-model = load_model(MODEL_PATH)
 
 app = Flask(__name__)
 
