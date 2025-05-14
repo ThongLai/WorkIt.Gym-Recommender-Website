@@ -1,6 +1,3 @@
-# UNCOMMENT THESE TO INSTALL THE REQUIRED LIBRARIES
-# %pip install numpy==1.26.4 tensorflow==2.10.1 pandas scikit-learn pymysql sshtunnel flask
-
 # ================SYSTEM CHECK==================================
 import sys
 import os
@@ -34,10 +31,20 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder, StandardScaler
 from tensorflow.keras.models import load_model
 
+import os
+try:
+    # This will work in a script
+    SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+except NameError:
+    # __file__ is not defined in notebooks; fallback to current working directory
+    SCRIPT_DIR = os.getcwd()
+
+MODEL_PATH = os.path.join(os.path.dirname(SCRIPT_DIR), "model", "ann_gym_recommender.keras")
+DATA_PATH = os.path.join(os.path.dirname(SCRIPT_DIR), "data", "megaGymDataset.csv")
+
 from flask import Flask, request
 
-MODEL_PATH = "AI/model/ann_gym_recommender.keras"
-DATA_PATH = "AI/data/megaGymDataset.csv"
+# ================FUNCTIONS====================================
 
 def labelEncodersScaler(data):
     label_encoders = {}

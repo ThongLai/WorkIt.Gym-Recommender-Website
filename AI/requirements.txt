@@ -1,9 +1,0 @@
-# requirements.txt
-
-numpy==1.26.4
-tensorflow==2.10.1
-pandas
-scikit-learn
-pymysql
-sshtunnel
-flask

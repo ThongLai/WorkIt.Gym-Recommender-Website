@@ -1,2 +1,5 @@
-.venv
+.venv*
 .vscode
+.ipynb_checkpoints
+SSH_remote_info.txt
+*.pem
