@@ -49,6 +49,11 @@ source ~/.bashrc
 poetry --version
 ```
 
+**Install poetry-plugin-shell:**
+```bash
+poetry self add poetry-plugin-shell
+```
+
 3. Install dependencies and activate environment:
 ```bash
 cd AI
