@@ -22,6 +22,7 @@ sudo dnf update -y
 sudo dnf install -y httpd php php-mysqlnd
 
 # Install Python and development tools
+# As the server is on Linux, higher python version than 3.10 are also supported Tensorflow GPU
 sudo dnf install -y python3 python3-pip python3-devel
 
 # Install Git

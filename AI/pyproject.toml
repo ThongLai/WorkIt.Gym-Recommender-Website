@@ -1,20 +1,33 @@
-[tool.poetry]
+[project]
 name = "workit-gym-recommender"
 version = "0.1.0"
 description = "AI-powered gym workout recommender system"
 readme = "README.md"
+requires-python = ">=3.9, <3.11"
+dependencies = [
+    "numpy==1.26.4; sys_platform == 'win32'",
+    "tensorflow==2.10.1; sys_platform == 'win32'",
+    "tensorflow-io-gcs-filesystem==0.31.0; sys_platform == 'win32'",
+
+    "tensorflow==2.19.0; sys_platform == 'linux'",
+    "numpy; sys_platform == 'linux'",
+    "tensorflow-io-gcs-filesystem; sys_platform == 'linux'",
+
+    "pandas",
+    "scikit-learn",
+    "pymysql",
+    "sshtunnel",
+    "flask"
+]
+
+[project.optional-dependencies]
+dev = [
+    "ipykernel"
+]
+
+[tool.poetry]
 package-mode = false
 
-[tool.poetry.dependencies]
-python = ">=3.10,<3.11"
-numpy = "1.26.4"
-tensorflow = "2.10.1"
-tensorflow-io-gcs-filesystem = "0.31.0"
-pandas = "*"
-scikit-learn = "*"
-pymysql = "*"
-sshtunnel = "*"
-flask = "*"
-
-[tool.poetry.group.dev.dependencies]
-ipykernel = "*"
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
