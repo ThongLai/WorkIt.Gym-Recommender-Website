@@ -117,7 +117,3 @@ WorkIt.Gym-Recommender-Website/
 ├── video.php                                   # Video display page
 └── README.md                                   # Project documentation
 ```
-
-## License
-
-This project is licensed under the MIT License. See `LICENSE.md` for more information.
