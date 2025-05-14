@@ -1,5 +1,12 @@
 # WorkIt - AI Exercise Recommender Website
 
+[![Python](https://img.shields.io/badge/Python-3.10.11-blue.svg)](https://www.python.org/)
+[![TensorFlow](https://img.shields.io/badge/TensorFlow-2.10.1-orange.svg)](https://www.tensorflow.org/)
+[![Flask](https://img.shields.io/badge/Flask-3.1.0-lightgrey.svg)](https://flask.palletsprojects.com/)
+[![AWS](https://img.shields.io/badge/AWS-Deployed-yellow.svg)](http://ec2-3-8-148-213.eu-west-2.compute.amazonaws.com)
+
+🔗 Live Demo: **[http://ec2-3-8-148-213.eu-west-2.compute.amazonaws.com](http://ec2-3-8-148-213.eu-west-2.compute.amazonaws.com)**
+
 Welcome to the WorkIt AI Exercise Recommender Website, a web-based application designed to assist users in finding the perfect gym exercises tailored to their needs.
 
 ## Project Overview

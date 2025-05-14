@@ -71,3 +71,34 @@ groups ec2-user
 cd /var/www/html
 sudo git clone https://github.com/ThongLai/WorkIt.Gym-Recommender-Website .
 ```
+
+## Configure Apache
+```bash
+sudo nano /etc/httpd/conf.d/workit.conf
+```
+
+**Add the following content:**
+
+```bash
+<VirtualHost *:80>
+    ServerName ec2-3-8-148-213.eu-west-2.compute.amazonaws.com
+    DocumentRoot /var/www/html
+    
+    <Directory /var/www/html>
+        AllowOverride All
+        Require all granted
+    </Directory>
+    
+    # Proxy for AI Flask server
+    ProxyPass /ai http://localhost:5000
+    ProxyPassReverse /ai http://localhost:5000
+    
+    ErrorLog /var/log/httpd/workit_error.log
+    CustomLog /var/log/httpd/workit_access.log combined
+</VirtualHost>
+```
+
+## Restart Apache
+```bash
+sudo systemctl restart httpd
+```
