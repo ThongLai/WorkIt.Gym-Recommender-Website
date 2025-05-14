@@ -6,11 +6,11 @@ Password: umbra(despair>Quartz218
 
 ## AWS EC2 server SSH connection:
 ```bash
-ssh -i "workit-key.pem" ec2-user@3.8.148.213
+ssh -i "workit-key.pem" ec2-user@18.170.221.113
 ```
 OR
 ```bash
-ssh -i "workit-key.pem" ec2-user@ec2-3-8-148-213.eu-west-2.compute.amazonaws.
+ssh -i "workit-key.pem" ec2-user@ec2-18-170-221-113.eu-west-2.compute.amazonaws.com
 ```
 
 ## Install dependencies (on AWS Linux 2023):
@@ -52,25 +52,33 @@ curl -sSL https://install.python-poetry.org | python3 -
 
 # Verify installation
 poetry --version
-```bash
-# Add the current user to the Apache group
-sudo usermod -a -G apache ec2-user
 
-# Set proper ownership
-sudo chown -R ec2-user:apache /var/www
-
-# Logout and log back in to check group change
-exit
-ssh -i "workit-key.pem" ec2-user@3.8.148.213
-
-# Check if the user is in the apache group
-groups ec2-user
+# Install poetry-plugin-shell
+poetry self add poetry-plugin-shell
 ```
 
 ## Clone the repository
 ```bash
 cd /var/www/html
-sudo git clone https://github.com/ThongLai/WorkIt.Gym-Recommender-Website .
+sudo git clone https://github.com/ThongLai/WorkIt.Gym-Recommender-Website
+```
+
+## Add the current user to the Apache group
+```bash
+sudo usermod -a -G apache ec2-user
+
+# Set proper ownership
+sudo chown -R ec2-user:apache /var/www
+sudo chmod 2775 /var/www
+find /var/www -type d -exec sudo chmod 2775 {} \;
+find /var/www -type f -exec sudo chmod 0664 {} \;
+
+# Logout and log back in to check group change
+exit
+ssh -i "workit-key.pem" ec2-user@18.170.221.113
+
+# Check if the user is in the apache group
+groups ec2-user
 ```
 
 ## Configure Apache
@@ -82,10 +90,10 @@ sudo nano /etc/httpd/conf.d/workit.conf
 
 ```bash
 <VirtualHost *:80>
-    ServerName ec2-3-8-148-213.eu-west-2.compute.amazonaws.com
-    DocumentRoot /var/www/html
+    ServerName workit.com
+    DocumentRoot /var/www/html/WorkIt.Gym-Recommender-Website
     
-    <Directory /var/www/html>
+    <Directory /var/www/html/WorkIt.Gym-Recommender-Website>
         AllowOverride All
         Require all granted
     </Directory>
@@ -102,4 +110,43 @@ sudo nano /etc/httpd/conf.d/workit.conf
 ## Restart Apache
 ```bash
 sudo systemctl restart httpd
+
+# Check if the server is running
+sudo systemctl status httpd
+sudo tail -n 20 /var/log/httpd/error_log
+```
+
+## Install dependencies for the AI Flask server
+```bash
+cd /var/www/html/WorkIt.Gym-Recommender-Website/AI
+poetry install
+```
+
+## Create a systemd service for the AI Flask server
+```bash
+sudo nano /etc/systemd/system/workit-ai.service
+```
+
+**Add the following content:**
+```bash
+[Unit]
+Description=WorkIt Gym AI Recommender Flask Server
+After=network.target
+
+[Service]
+User=ec2-user
+WorkingDirectory=/var/www/html/WorkIt.Gym-Recommender-Website/AI/script
+ExecStart=/home/ec2-user/.local/bin/poetry run python Predict.py
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+```
+
+## Start and enable the AI Flask server
+```bash
+sudo systemctl daemon-reload
+sudo systemctl start workit-ai
+sudo systemctl enable workit-ai   # Start on boot
+sudo systemctl status workit-ai   # Check status
 ```
