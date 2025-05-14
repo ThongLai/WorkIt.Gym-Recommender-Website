@@ -1,0 +1,123 @@
+/* Login section styling */
+
+.login-heading {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 28px;
+    color: #333;
+}
+
+.contact .form input[type="text"],
+.contact .form input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background: #f8f8f8;
+    transition: border-color 0.3s;
+}
+
+.contact .form input:focus {
+    border-color: #ff5722;
+    outline: none;
+}
+
+.form-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+}
+
+.remember-me input {
+    margin-right: 5px;
+}
+
+.forgot-password {
+    color: #ff5722;
+    text-decoration: none;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+.login-btn {
+    background-color: #ff5722;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.signup-link {
+    text-align: center;
+    margin-top: 20px;
+    color: #555;
+}
+
+.signup-link a {
+    color: #ff5722;
+    text-decoration: none;
+}
+
+.signup-link a:hover {
+    text-decoration: underline;
+}
+
+.social-links {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #333;
+    color: white;
+    margin: 0 8px;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.social-links a:hover {
+    background: #ff5722;
+    transform: translateY(-3px);
+}
+
+.info ul li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.info ul li i {
+    width: 30px;
+    color: #ff5722;
+}
+
+/* Responsive styles for login */
+@media (max-width: 768px) {
+    .form-footer {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .remember-me {
+        margin-bottom: 10px;
+    }
+    
+    .social-links {
+        margin-top: 15px;
+    }
+} 
