@@ -21,6 +21,8 @@ curl -sSL https://install.python-poetry.org | python3 -
 ```
 
 2. Set up Poetry in Windows Environment Variables:
+
+**On Windows:**
 ```
 a. Open Windows Start menu and search for "Environment Variables"
 b. Click "Edit the system environment variables"
@@ -35,6 +37,18 @@ i. Click "OK" on all windows to save
 j. Restart any open terminal windows
 ```
 
+**On Linux/Mac OS:**
+```bash
+# Add Poetry to PATH
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
+source ~/.bashrc
+```
+
+**Verify installation:**
+```bash
+poetry --version
+```
+
 3. Install dependencies and activate environment:
 ```bash
 cd AI
@@ -42,7 +56,7 @@ poetry install
 poetry shell
 ```
 
-## Usage
+### Local Testing
 
 1. First run `Train.ipynb` to train and save the model
 2. Use `Ratings Assignments.ipynb` to generate exercise ratings
