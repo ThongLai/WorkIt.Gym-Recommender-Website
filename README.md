@@ -7,28 +7,33 @@ A fitness website with AI-powered workout recommendations based on user preferen
 ### Core Files
 - `index.php` - Main page that includes modular components
 - `video.php` - Page for viewing workout videos
+- `deployment_note.md` - Notes for deployment process
+- `user_data_script.txt` - User data management script
+- `.gitignore` - Git ignore configuration
+- `workit-key.pem` - Authentication key
 
 ### Includes (Components)
-- `includes/config.php` - Configuration settings
-- `includes/header.php` - Common header with navigation
-- `includes/footer.php` - Common footer with scripts
-- `includes/recommender.php` - AI recommender system logic
+- `includes/` - Modular components for the website
+  - Configuration, header, footer, and recommender system components
 
 ### Assets
 - `css/` - Stylesheet files
   - `style.css` - Original styling
-  - `main.css` - New modular styling for main components
-  - `login.css` - Login-specific styling
+  - Other CSS files for different components
 - `js/` - JavaScript files
-  - `main.js` - Main site functionality
-  - `wow.min.js` - Animation library
+  - Site functionality and animation libraries
 - `images/` - Website images
+
+### User Authentication
+- `sign_up/` - User registration and authentication components
 
 ### AI System
 - `AI/` - Artificial Intelligence components
   - `data/` - Training data
   - `model/` - AI models
   - `script/` - Python scripts for the recommender
+  - `notebook/` - Jupyter notebooks for AI development
+  - `.venv/` - Python virtual environment
 
 ## Setup Instructions
 
