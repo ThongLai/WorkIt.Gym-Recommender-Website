@@ -92,16 +92,21 @@ include 'includes/header.php';
 						<select name="body-part" id="body-part" required>
 							<option value="">-- Select an option --</option>
 							<option value="Abdominals">Abdominals</option>
+							<option value="Adductors">Adductors</option>
 							<option value="Abductors">Abductors</option>
 							<option value="Biceps">Biceps</option>
-							<option value="Lats">Lats</option>
+							<option value="Calves">Calves</option>
 							<option value="Chest">Chest</option>
 							<option value="Forearms">Forearms</option>
-							<option value="Lower-back">Lower Back</option>
-							<option value="Middle-back">Middle Back</option>
+							<option value="Glutes">Glutes</option>
+							<option value="Hamstrings">Hamstrings</option>
+							<option value="Lats">Lats</option>
+							<option value="Lower Back">Lower Back</option>
+							<option value="Middle Back">Middle Back</option>
 							<option value="Traps">Traps</option>
 							<option value="Neck">Neck</option>
-							<option value="Shoulder">Shoulders</option>
+							<option value="Quadriceps">Quadriceps</option>
+							<option value="Shoulders">Shoulders</option>
 							<option value="Triceps">Triceps</option>
 						</select>
 
@@ -117,7 +122,7 @@ include 'includes/header.php';
 							<option value="Machine">Machine</option>
 							<option value="Body Only">Body Only</option>
 							<option value="Medicine Ball">Medicine Ball</option>
-							<option value="Exercises">Exercise</option>
+							<option value="Exercise Ball">Exercise Ball</option>
 							<option value="Foam Roll">Foam Roll</option>
 							<option value="E-Z Curl Bar">E-Z Curl Bar</option>
 						</select>
