@@ -117,7 +117,7 @@ function renderResultsTable($data) {
     foreach ($data as $row) {
         echo '<tr>';
         echo '<td>' . $row['ID'] . '</td>';
-        echo '<td><a href="video.php?id=' . $row['ID'] . '">' . $row['Title'] . '</a></td>';
+        echo '<td><a href="includes/video.php?id=' . $row['ID'] . '">' . $row['Title'] . '</a></td>';
         echo '<td>' . $row['Desc'] . '</td>';
         echo '<td>' . $row['Type'] . '</td>';
         echo '<td>' . $row['BodyPart'] . '</td>';

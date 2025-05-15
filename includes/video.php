@@ -3,8 +3,8 @@
 <head>
 	<title>Workit - Your Reccommendation</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="css/animate.css">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" href="../css/animate.css">
+	<link rel="stylesheet" type="text/css" href="../css/style.css">
   <style>
     .wow:first-child {
       visibility: hidden;
@@ -116,7 +116,7 @@
 })
 
 </script>
-<script src="js/wow.min.js"></script>
+<script src="../js/wow.min.js"></script>
 <script>
     wow = new WOW(
       {
@@ -132,4 +132,4 @@
 
   </script>
 </body>
-</html>
+</html> 
