@@ -10,7 +10,6 @@ A fitness website with AI-powered workout recommendations based on user preferen
 - `deployment_note.md` - Notes for deployment process
 - `user_data_script.txt` - User data management script
 - `.gitignore` - Git ignore configuration
-- `workit-key.pem` - Authentication key
 
 ### Includes (Components)
 - `includes/` - Modular components for the website
@@ -33,22 +32,17 @@ A fitness website with AI-powered workout recommendations based on user preferen
   - `model/` - AI models
   - `script/` - Python scripts for the recommender
   - `notebook/` - Jupyter notebooks for AI development
-  - `.venv/` - Python virtual environment
 
 ## Setup Instructions
 
 1. Clone the repository
 2. Make sure PHP and a web server (Apache/Nginx) are installed
-3. Start the Flask server for the AI recommender:
-   ```
-   cd AI
-   python app.py
-   ```
-4. Access the website via your web server
+3. Start the Flask server for the AI recommender
+4. Access the website via web server
 
 ## Features
 
 - AI-driven workout recommendations
 - User profile and workout tracking
 - Video demonstrations of exercises
-- Responsive design for all devices
+- Responsive design
